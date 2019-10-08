@@ -1,1 +1,1 @@
-# webpack-typings-for-json
+# Webpack typings for JSON loader

@@ -1,0 +1,32 @@
+{
+    "first-name": "John",
+    "last-name": "Doe",
+    "address": {
+        "street": "Main Street",
+        "number": 123,
+        "city": "Anytown"
+    },
+    "first-level": {
+        "name": "First Level",
+        "second-level": {
+            "name": "Second Level",
+            "third-level": {
+                "name": "Third Level"
+            }
+        }
+    },
+    "relationships": {
+        "family": [
+            {
+                "first-name": "Jane",
+                "last-name": "Doe",
+                "relation": "Partner"
+            },
+            {
+                "first-name": "Nicolas",
+                "last-name": "Doe",
+                "relation": "Father"
+            }
+        ]
+    }
+}
