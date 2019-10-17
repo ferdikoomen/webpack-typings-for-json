@@ -4,6 +4,15 @@ const os = require('os');
 const fs = require('fs');
 const camelCase = require('camelcase');
 
+// Quick utility to get spacing for formatting.
+function space(i) {
+    let s = '';
+    while (i--) {
+        s += '    ';
+    }
+    return s;
+}
+
 /**
  * The keys in the resource file should all be in "snake-case", however we want to
  * use "camelCase" variable names in our code. So, we create an interface that looks
@@ -20,28 +29,26 @@ const camelCase = require('camelcase');
  * }
  */
 function toKeys(obj, i) {
-    return Object
-        .keys(obj)
-        .reduce((result, key) => {
-            const value = obj[key];
-            const prop = camelCase(key);
-            if (Array.isArray(value)) {
-                result.push(`${space(i)}readonly ${prop}: [`);
-                for (const val of value) {
-                    result.push(`${space(i + 1)}{`);
-                    result.push(...toKeys(val, i + 2));
-                    result.push(`${space(i + 1)}},`);
-                }
-                result.push(`${space(i)}]`);
-            } else if (typeof value === 'object') {
-                result.push(`${space(i)}readonly ${prop}: {`);
-                result.push(...toKeys(value, i + 1));
-                result.push(`${space(i)}}`);
-            } else {
-                result.push(`${space(i)}readonly ${prop}: string; // ${value}`);
-            }
-            return result;
-        }, []);
+    return Object.keys(obj).reduce((result, key) => {
+        const value = obj[key];
+        const prop = camelCase(key);
+        if (Array.isArray(value)) {
+            result.push(`${space(i)}readonly ${prop}: [`);
+            value.forEach(val => {
+                result.push(`${space(i + 1)}{`);
+                result.push(...toKeys(val, i + 2));
+                result.push(`${space(i + 1)}},`);
+            });
+            result.push(`${space(i)}]`);
+        } else if (typeof value === 'object') {
+            result.push(`${space(i)}readonly ${prop}: {`);
+            result.push(...toKeys(value, i + 1));
+            result.push(`${space(i)}}`);
+        } else {
+            result.push(`${space(i)}readonly ${prop}: string; // ${value}`);
+        }
+        return result;
+    }, []);
 }
 
 /**
@@ -61,33 +68,22 @@ function toKeys(obj, i) {
  * }
  */
 function toExports(obj, parentKey) {
-    return Object
-        .keys(obj)
-        .reduce((result, key) => {
-            const value = obj[key];
-            const prop = camelCase(key);
-            const path = parentKey ? `${parentKey}.${key}` : key;
-            if (Array.isArray(value)) {
-                result[prop] = [];
-                for (let i = 0; i < value.length; i++) {
-                    result[prop][i] = toExports(value[i], `${path}[${i}]`);
-                }
-            } else if (typeof value === 'object') {
-                result[prop] = toExports(value, path);
-            } else {
-                result[prop] = path;
+    return Object.keys(obj).reduce((result, key) => {
+        const value = obj[key];
+        const prop = camelCase(key);
+        const path = parentKey ? `${parentKey}.${key}` : key;
+        if (Array.isArray(value)) {
+            result[prop] = [];
+            for (let i = 0; i < value.length; i++) {
+                result[prop][i] = toExports(value[i], `${path}[${i}]`);
             }
-            return result;
-        }, {});
-}
-
-// Quick utility to get spacing for formatting.
-function space(i) {
-    let s = '';
-    while (i--) {
-        s += '    ';
-    }
-    return s;
+        } else if (typeof value === 'object') {
+            result[prop] = toExports(value, path);
+        } else {
+            result[prop] = path;
+        }
+        return result;
+    }, {});
 }
 
 /**
@@ -98,8 +94,7 @@ function space(i) {
  *
  * @param input The content of the loaded JSON file.
  */
-module.exports = function (input) {
-
+module.exports = function(input) {
     if (this.cacheable) {
         this.cacheable();
     }
@@ -115,16 +110,13 @@ module.exports = function (input) {
         ...toKeys(json, 1),
         '}',
         'declare const locale: Keys;',
-        'export default locale;'
+        'export default locale;',
     ];
 
     // Write the definition file, we do not use Webpack's emitFile() method, since
     // that would then track this output file as a dependency. We don't want this,
     // since these files are placed inside the source folder!
-    fs.writeFileSync(
-        definitionFile,
-        definitionFileContent.join(os.EOL)
-    );
+    fs.writeFileSync(definitionFile, definitionFileContent.join(os.EOL));
 
     // Here comes the Webpack magic: Lets say we have the following i18n code example:
     //
@@ -142,6 +134,5 @@ module.exports = function (input) {
     // Luckily this is easy, instead of returning the JSON, we return a new javascript object
     // that contains 'key:key' objects instead of 'key:value'. We already created this object
     // in the step above! So, we can just stringify that and we are in business.
-
     return `module.exports = ${JSON.stringify(toExports(json))};`;
 };
