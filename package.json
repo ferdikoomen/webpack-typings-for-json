@@ -1,7 +1,7 @@
 {
     "name": "webpack-typings-for-json",
-    "version": "0.1.0",
-    "description": "",
+    "version": "0.1.1",
+    "description": "Webpack loader that generates TypeScript typings for JSON files",
     "author": "Ferdi Koomen",
     "homepage": "https://github.com/ferdikoomen/webpack-typings-for-json",
     "repository": {
