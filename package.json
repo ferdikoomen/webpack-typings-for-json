@@ -12,6 +12,14 @@
         "url": "https://github.com/ferdikoomen/webpack-typings-for-json/issues"
     },
     "license": "MIT",
+    "keywords": [
+        "webpack",
+        "loader",
+        "typescript",
+        "typings",
+        "generate",
+        "json"
+    ],
     "maintainers": [
         {
             "name": "Ferdi Koomen",
