@@ -1,6 +1,6 @@
 {
     "name": "webpack-typings-for-json",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "Webpack loader that generates TypeScript typings for JSON files",
     "author": "Ferdi Koomen",
     "homepage": "https://github.com/ferdikoomen/webpack-typings-for-json",
@@ -35,7 +35,8 @@
         "prettier:fix": "prettier \"./src/**/*.js\" --write"
     },
     "dependencies": {
-        "camelcase": "5.3.1"
+        "camelcase": "5.3.1",
+        "loader-utils": "1.2.3"
     },
     "devDependencies": {
         "@types/node": "12.11.1",

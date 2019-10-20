@@ -34,10 +34,22 @@ module.exports = {
                     loader: 'ts-loader'
                 }]
             }, {
-                test: /\.json$/,
+                test: /(locale1|locale2)\.json$/,
                 type: 'javascript/auto',
                 use: [{
-                    loader: path.resolve(__dirname, './src')
+                    loader: path.resolve(__dirname, './src'),
+                    options: {
+                        mode: 'keys'
+                    }
+                }]
+            }, {
+                test: /(settings)\.json$/,
+                type: 'javascript/auto',
+                use: [{
+                    loader: path.resolve(__dirname, './src'),
+                    options: {
+                        mode: 'values'
+                    }
                 }]
             }
         ]
