@@ -34,7 +34,7 @@ module.exports = {
                     loader: 'ts-loader'
                 }]
             }, {
-                test: /(locale1|locale2)\.json$/,
+                test: /(locale1|locale2|locale3)\.json$/,
                 type: 'javascript/auto',
                 use: [{
                     loader: path.resolve(__dirname, './src'),

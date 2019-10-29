@@ -1,5 +1,6 @@
 import locale1 from './locale1.json';
 import locale2 from './locale2.json';
+import locale3 from './locale3.json';
 import settings from './settings.json';
 
 console.log(locale1.alignLeft);
@@ -22,6 +23,23 @@ console.log(locale2.relationships.family[0].relation);
 console.log(locale2.relationships.family[1].firstName);
 console.log(locale2.relationships.family[1].lastName);
 console.log(locale2.relationships.family[1].relation);
+
+console.log(locale3.group1.camelCaseKey1);
+console.log(locale3.group1.camelCaseKey2);
+console.log(locale3.group1.camelCaseKey3);
+console.log(locale3.group1['{0}']);
+console.log(locale3.group1['{1}']);
+console.log(locale3.group2['-special-key-1']);
+console.log(locale3.group2['0special-key-2']);
+console.log(locale3.group2['$special-key-3']);
+console.log(locale3.group2['#special-key-4']);
+console.log(locale3.group2['&special-key-5']);
+console.log(locale3.group2.data['0'].title);
+console.log(locale3.group2.data['0'].desc);
+console.log(locale3.group2.data['0'].link);
+console.log(locale3.group2.data['1'].title);
+console.log(locale3.group2.data['1'].desc);
+console.log(locale3.group2.data['1'].link);
 
 console.log(settings.server);
 console.log(settings.username);

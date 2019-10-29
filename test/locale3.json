@@ -1,0 +1,29 @@
+{
+    "group1": {
+        "camelCaseKey1": "Lorem Ipsum",
+        "camelCaseKey2": "{0} Lorem Ipsum",
+        "camelCaseKey3": "{0} Lorem Ipsum {1}",
+        "{0}": "Prefix",
+        "{1}": "Postfix"
+    },
+    "group2": {
+        "title": "Catalog of links",
+        "-special-key-1": "Special Key 1",
+        "0special-key-2": "Special Key 2",
+        "$special-key-3": "Special Key 3",
+        "#special-key-4": "Special Key 4",
+        "&special-key-5": "Special Key 5",
+        "data": {
+            "0": {
+                "title": "Swagger UI",
+                "desc": "Simplify API development for users, teams, and enterprises with the Swagger open source and professional toolset. Find out how Swagger can help you.",
+                "link": "https://swagger.io/tools/swagger-ui/"
+            },
+            "1": {
+                "title": "GitHub profile",
+                "desc": "Freelance Developer from Amsterdam",
+                "link": "https://github.com/ferdikoomen"
+            }
+        }
+    }
+}
