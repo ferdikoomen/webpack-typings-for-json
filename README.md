@@ -3,7 +3,6 @@
 [![NPM](https://badgen.net/npm/v/webpack-typings-for-json)](https://www.npmjs.com/package/webpack-typings-for-json)
 [![License](https://badgen.net/npm/license/webpack-typings-for-json)](https://www.npmjs.com/package/webpack-typings-for-json)
 [![Dependencies](https://badgen.net/david/dep/ferdikoomen/webpack-typings-for-json)](https://david-dm.org/ferdikoomen/webpack-typings-for-json)
-[![Build Size](https://badgen.net/bundlephobia/minzip/webpack-typings-for-json)](https://bundlephobia.com/result?p=webpack-typings-for-json)
 [![Build Status](https://badgen.net/travis/ferdikoomen/webpack-typings-for-json/master)](https://travis-ci.org/ferdikoomen/webpack-typings-for-json)
 [![Quality](https://badgen.net/lgtm/grade/javascript/g/ferdikoomen/webpack-typings-for-json)](https://lgtm.com/projects/g/ferdikoomen/webpack-typings-for-json)
 
