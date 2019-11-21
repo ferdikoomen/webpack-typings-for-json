@@ -9,11 +9,7 @@ const loaderUtils = require('loader-utils');
  * Quick utility to get spacing for formatting.
  */
 function space(i) {
-    let s = '';
-    while (i--) {
-        s += '    ';
-    }
-    return s;
+    return ('    ').repeat(i);
 }
 
 /**
