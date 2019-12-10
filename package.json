@@ -47,7 +47,7 @@
         "loader-utils": "1.2.3"
     },
     "devDependencies": {
-        "@types/node": "12.12.14",
+        "@types/node": "12.12.16",
         "eslint": "6.7.2",
         "eslint-config-prettier": "6.7.0",
         "eslint-plugin-prettier": "3.1.1",
