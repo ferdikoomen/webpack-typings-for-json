@@ -3,6 +3,7 @@
 [![NPM](https://badgen.net/npm/v/webpack-typings-for-json)](https://www.npmjs.com/package/webpack-typings-for-json)
 [![License](https://badgen.net/npm/license/webpack-typings-for-json)](https://www.npmjs.com/package/webpack-typings-for-json)
 [![Build Status](https://badgen.net/travis/ferdikoomen/webpack-typings-for-json/master)](https://travis-ci.org/ferdikoomen/webpack-typings-for-json)
+[![Codecov](https://codecov.io/gh/ferdikoomen/webpack-typings-for-json/branch/master/graph/badge.svg)](https://codecov.io/gh/ferdikoomen/webpack-typings-for-json)
 [![Quality](https://badgen.net/lgtm/grade/javascript/g/ferdikoomen/webpack-typings-for-json)](https://lgtm.com/projects/g/ferdikoomen/webpack-typings-for-json)
 
 > Webpack loader that generates TypeScript typings for JSON files
@@ -31,7 +32,7 @@ module.exports = {
 
 ## Example (i18n)
 
-Let's say our project uses a JSON based localization setup, like [i18next](https://www.i18next.com/) 
+Let's say our project uses a JSON based localization setup, like [i18next](https://www.i18next.com/)
 and we have the following file: `./src/locale/en.js` in your project, containing the following
 (simple) resource strings:
 
@@ -48,7 +49,7 @@ and we have the following file: `./src/locale/en.js` in your project, containing
 }
 ```
 
-When we add the `webpack-typings-for-json` loader, this will generate a TypeScript 
+When we add the `webpack-typings-for-json` loader, this will generate a TypeScript
 definition file `./src/locale/en.d.ts` with the following content:
 
 ```typescript
@@ -66,8 +67,8 @@ declare const locale: Keys;
 export default locale;
 ```
 
-In your Typescript file you will now be able to import this localization 
-file and get type hints with the available properties. The values for 
+In your Typescript file you will now be able to import this localization
+file and get type hints with the available properties. The values for
 these properties are the keys of the original json:
 
 ```typescript
@@ -79,9 +80,9 @@ console.log(locale.alignCenter); // "align-center"
 console.log(locale.justify); // "justify"
 ```
 
-In your (React) component you can import this localization file and use 
+In your (React) component you can import this localization file and use
 the properties as input for the translation function / library to fetch the
-right string. This means: **No more hard coded keys. And if someone changes 
+right string. This means: **No more hard coded keys. And if someone changes
 the JSON, you will get compile time warnings!**
 
 ```typescript jsx
@@ -108,7 +109,7 @@ Some projects use a JSON file as a 'configuration' or 'settings' file that speci
 properties. For instance: A location to a server, some theme settings, etc. We normally embed
 these properties during build time (using Webpack), but they are never typed... You can use
 this same loader to generate typings for this JSON file and use the values, as if you
-are using a normal Typescript object. 
+are using a normal Typescript object.
 
 Let's say you have the following settings file `./src/settings.json`:
 
@@ -127,7 +128,7 @@ Let's say you have the following settings file `./src/settings.json`:
 ```
 
 When we add the `webpack-typings-for-json` loader, then we can specify
-the option to include the values, rather then the keys in the output 
+the option to include the values, rather then the keys in the output
 object:
 
 **webpack.config.js**
@@ -149,7 +150,7 @@ module.exports = {
 };
 ```
 
-this will generate a TypeScript definition file `./src/settings.json.d.ts` with 
+this will generate a TypeScript definition file `./src/settings.json.d.ts` with
 the following content, as you can see this is just a normal Typescript interface
 that matches the JSON we are importing:
 
@@ -158,7 +159,7 @@ interface Keys {
     readonly server: string;
     readonly username: string;
     readonly theme: {
-        readonly color: string; 
+        readonly color: string;
         readonly fonts: {
             readonly header: string;
             readonly body: string;
@@ -169,8 +170,8 @@ declare const locale: Keys;
 export default locale;
 ```
 
-In your Typescript file you will now be able to import this settings 
-file and get type hints with the available properties. The values for 
+In your Typescript file you will now be able to import this settings
+file and get type hints with the available properties. The values for
 these properties are directly coming from the imported json
 
 ```typescript
@@ -199,7 +200,7 @@ plugins: [
 ```
 
 You might see project warnings when you have not yet build the project. This happens
-because Typescript cannot import JSON files (since they are not official modules). 
+because Typescript cannot import JSON files (since they are not official modules).
 In order to fix this you can add a type definition to your project:
 
 **./typings/json.d.ts**
