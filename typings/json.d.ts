@@ -18,7 +18,7 @@
 declare module '*.json' {
 
     declare const keys: {
-        readonly [key: string]: string;
+        readonly [key: string]: any;
     };
 
     export type LocaleKey = string;
