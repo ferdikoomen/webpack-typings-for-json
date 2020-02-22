@@ -1,7 +1,11 @@
-import locale1 from './locale1.json';
+import locale1, { LocaleKey } from './locale1.json';
 import locale2 from './locale2.json';
 import locale3 from './locale3.json';
 import settings from './settings.json';
+
+function testLocaleKey(localKey: LocaleKey): void {
+    console.log('localKey:', localKey)
+}
 
 console.log(locale1.alignLeft);
 console.log(locale1.alignRight);
@@ -47,5 +51,14 @@ console.log(settings.debug);
 console.log(settings.theme.fontColor);
 console.log(settings.theme.fonts.styleHeader);
 console.log(settings.theme.fonts.styleBody);
+
+testLocaleKey(locale1.alignLeft);
+testLocaleKey(locale1.alignRight);
+testLocaleKey(locale1.alignCenter);
+testLocaleKey(locale1.justify);
+testLocaleKey(locale1.bulletList);
+testLocaleKey(locale1.numberedList);
+testLocaleKey(locale1.decreaseIndent);
+testLocaleKey(locale1.increaseIndent);
 
 console.log('Done!');

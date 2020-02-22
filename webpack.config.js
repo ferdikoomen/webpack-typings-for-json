@@ -39,7 +39,7 @@ module.exports = {
                 use: [{
                     loader: path.resolve(__dirname, './src'),
                     options: {
-                        mode: 'keys'
+                        exportType: true
                     }
                 }]
             }, {
@@ -48,7 +48,7 @@ module.exports = {
                 use: [{
                     loader: path.resolve(__dirname, './src'),
                     options: {
-                        mode: 'values'
+                        exportValues: true
                     }
                 }]
             }

@@ -1,0 +1,9 @@
+{{#object this}}
+{{@key}}: {
+{{#each this}}
+    {{> entry}}
+{{/each}}
+},
+{{else}}
+{{@key}}: '{{this}}',
+{{/object}}

@@ -1,106 +1,17 @@
 'use strict';
 
-const os = require('os');
 const fs = require('fs');
-const camelCase = require('camelcase');
-const loaderUtils = require('loader-utils');
+const handlebars = require('handlebars');
+const { getOptions } = require('loader-utils');
+const utils = require('./utils');
 
-/**
- * Quick utility to get spacing for formatting.
- */
-function space(i) {
-    return ('    ').repeat(i);
-}
+const template = utils.readTemplate('template.hbs');
+const templateEntry = utils.readTemplate('template-entry.hbs');
 
-/**
- * Convert prop name to "camelCase" and support special cases
- * like prop names with special characters like "{0}"
- * @param key
- * @returns {string}
- */
-function toPropName(key) {
-    if (/^[a-z][a-z0-9\-_]+/gi.test(key)) {
-        return camelCase(key);
-    }
-    return `'${key}'`;
-}
-
-/**
- * The keys in the resource file should all be in "snake-case", however we want to
- * use "camelCase" variable names in our code. So, we create an interface that looks
- * something like this:
- *
- * interface Keys {
- *    readonly someKey: string; // some-key
- *    readonly anotherKey: string; // another-key
- *    readonly nestedKey: {
- *       readonly someKey: string; // child-key.some-key
- *       readonly anotherKey: string; // child-key.another-key
- *    }
- *    ...
- * }
- */
-function toKeys(obj, i, exportValues) {
-    return Object.keys(obj).reduce((result, key) => {
-        const value = obj[key];
-        const prop = toPropName(key);
-        if (Array.isArray(value)) {
-            result.push(`${space(i)}readonly ${prop}: [`);
-            value.forEach(val => {
-                result.push(`${space(i + 1)}{`);
-                result.push(...toKeys(val, i + 2, exportValues));
-                result.push(`${space(i + 1)}},`);
-            });
-            result.push(`${space(i)}]`);
-        } else if (typeof value === 'object') {
-            result.push(`${space(i)}readonly ${prop}: {`);
-            result.push(...toKeys(value, i + 1, exportValues));
-            result.push(`${space(i)}}`);
-        } else if (exportValues) {
-            result.push(`${space(i)}readonly ${prop}: ${typeof value}; // ${value}`);
-        } else {
-            result.push(`${space(i)}readonly ${prop}: string; // ${value}`);
-        }
-        return result;
-    }, []);
-}
-
-/**
- * The keys in the resource file should all be in "snake-case", however we want to
- * use "camelCase" variable names in our code. So let's create a nice object that
- * contains a mapping between the original "snake-case" key and our "camelCase" variant.
- * The result is an object that looks like this:
- *
- * {
- *    someKey: 'some-key',
- *    anotherKey: 'another-key',
- *    nestedKey: {
- *       someKey: 'child-key.some-key',
- *       anotherKey: 'child-key.another-key'
- *    }
- *    ...
- * }
- */
-function toExports(obj, parentKey, exportValues) {
-    return Object.keys(obj).reduce((result, key) => {
-        const value = obj[key];
-        const prop = toPropName(key);
-        const path = parentKey ? `${parentKey}.${key}` : key;
-        if (Array.isArray(value)) {
-            result[prop] = [];
-            for (let i = 0; i < value.length; i++) {
-                result[prop][i] = toExports(value[i], `${path}[${i}]`, exportValues);
-            }
-        } else if (typeof value === 'object') {
-            result[prop] = toExports(value, path, exportValues);
-        } else if (exportValues) {
-            result[prop] = value;
-        } else {
-            result[prop] = path;
-        }
-        return result;
-    }, {});
-}
+handlebars.registerPartial('entry', templateEntry);
+handlebars.registerHelper('object', function(context, options) {
+    return typeof context === 'object' ? options.fn(this) : options.inverse(this);
+});
 
 /**
  * The 'webpack-typings-for-json' loader writes out Typescript definition files
@@ -108,35 +19,32 @@ function toExports(obj, parentKey, exportValues) {
  * the keys in our code and get type checking for these files. A handy use case
  * is usage for i18n keys inside a JSON file.
  *
- * @param input The content of the loaded JSON file.
+ * @param source The content of the loaded JSON file.
  */
-module.exports = function(input) {
+module.exports = function(source) {
     if (this.cacheable) {
         this.cacheable();
     }
 
-    const options = loaderUtils.getOptions(this);
-    const exportValues = options && options.mode === 'values';
-
-    const json = JSON.parse(input);
+    const options = getOptions(this);
+    const locals = JSON.parse(source);
+    const exportValues = options && options.exportValues === true;
+    const exportType = options && options.exportType === true;
+    const exports = utils.getExports(locals, exportValues);
+    const exportTypes = utils.getExportTypes(exports);
 
     // Get the path for the definition file, this is relative to the currently loaded json file... easy!
     const definitionFile = this.resourcePath.replace(/\.json$/g, '.json.d.ts');
-    const definitionFileContent = [
-        '// *** This file is automatically generated - Do not edit! ***',
-        '/* tslint:disable */',
-        '/* eslint-disable */',
-        'interface Keys {',
-        ...toKeys(json, 1, exportValues),
-        '}',
-        'declare const locale: Keys;',
-        'export default locale;',
-    ];
+    const definitionFileContent = template({
+        exports,
+        exportType,
+        exportTypes,
+    });
 
     // Write the definition file, we do not use Webpack's emitFile() method, since
     // that would then track this output file as a dependency. We don't want this,
     // since these files are placed inside the source folder!
-    fs.writeFileSync(definitionFile, definitionFileContent.join(os.EOL));
+    fs.writeFileSync(definitionFile, definitionFileContent);
 
     // Here comes the Webpack magic: Lets say we have the following i18n code example:
     //
@@ -155,5 +63,5 @@ module.exports = function(input) {
     // that contains 'key:key' objects instead of 'key:value'. We already created this object
     // in the step above! So, we can just stringify that and we are in business.
 
-    return `module.exports = ${JSON.stringify(toExports(json, null, exportValues))};`;
+    return utils.getSource(exports);
 };

@@ -53,17 +53,19 @@ When we add the `webpack-typings-for-json` loader, this will generate a TypeScri
 definition file `./src/locale/en.d.ts` with the following content:
 
 ```typescript
-interface Keys {
-    readonly alignLeft: string;
-    readonly alignCenter: string;
-    readonly alignRight: string;
-    readonly justify: string;
-    readonly bulletList: string;
-    readonly numberedList: string;
-    readonly decreaseIndent: string;
-    readonly increaseIndent: string;
-}
-declare const locale: Keys;
+declare const locale = {
+    alignLeft: 'align-left',
+    alignCenter: 'align-center',
+    alignRight: 'align-right',
+    justify: 'justify',
+    bulletList: 'bullet-list',
+    numberedList: 'numbered-list',
+    decreaseIndent: 'decrease-indent',
+    increaseIndent: 'increase-indent',
+} as const;
+
+export type LocaleKey = string;
+
 export default locale;
 ```
 
@@ -86,7 +88,7 @@ right string. This means: **No more hard coded keys. And if someone changes
 the JSON, you will get compile time warnings!**
 
 ```typescript jsx
-import * as React from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import locale from './en.json';
 
@@ -142,7 +144,7 @@ module.exports = {
             use: [{
                 loader: 'webpack-typings-for-json',
                 options: {
-                    mode: 'values'
+                    exportValues: true
                 }
             }]
         }]
@@ -155,18 +157,20 @@ the following content, as you can see this is just a normal Typescript interface
 that matches the JSON we are importing:
 
 ```typescript
-interface Keys {
-    readonly server: string;
-    readonly username: string;
-    readonly theme: {
-        readonly color: string;
-        readonly fonts: {
-            readonly header: string;
-            readonly body: string;
-        }
-    }
-}
-declare const locale: Keys;
+const locale = {
+    server: 'https://github.com',
+    username: 'John Doe',
+    theme: {
+        color: '#FF0000',
+        fonts: {
+            header: '{ font-family: monospace; font-size: 20px; }',
+            body: '{ font-family: monospace; font-size: 12px; }',
+        },
+    },
+} as const;
+
+export type LocaleKey = string;
+
 export default locale;
 ```
 
@@ -207,11 +211,11 @@ In order to fix this you can add a type definition to your project:
 ```typescript
 declare module '*.json' {
 
-    interface Keys {
-        readonly [key: string]: any;
-    }
+    declare const keys: {
+        readonly [key: string]: string;
+    };
 
-    declare const keys: Keys;
+    export type LocaleKey = string;
 
     export default keys;
 }

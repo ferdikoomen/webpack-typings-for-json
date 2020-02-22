@@ -6,9 +6,7 @@ const webpack = require('webpack');
 const options = require('../webpack.config.js');
 
 test('is generated correctly', done => {
-
     webpack(options, (err, stats) => {
-
         if (err) {
             return done(err);
         } else if (stats.hasErrors()) {
@@ -51,66 +49,55 @@ test('is generated correctly', done => {
         expect(locale3Stats.size).toBeGreaterThan(0);
         expect(settingsStats.size).toBeGreaterThan(0);
 
-        expect(locale1Content).toContain('readonly alignLeft: string; // Align left');
-        expect(locale1Content).toContain('readonly alignCenter: string; // Align centre');
-        expect(locale1Content).toContain('readonly alignRight: string; // Align right');
-        expect(locale1Content).toContain('readonly justify: string; // Justify');
-        expect(locale1Content).toContain('readonly bulletList: string; // Bullet list');
-        expect(locale1Content).toContain('readonly numberedList: string; // Numbered list');
-        expect(locale1Content).toContain('readonly decreaseIndent: string; // Decrease indent');
-        expect(locale1Content).toContain('readonly increaseIndent: string; // Increase indent');
+        expect(locale1Content).toContain("alignLeft: 'align-left',");
+        expect(locale1Content).toContain("alignCenter: 'align-center',");
+        expect(locale1Content).toContain("alignRight: 'align-right',");
+        expect(locale1Content).toContain("justify: 'justify',");
+        expect(locale1Content).toContain("bulletList: 'bullet-list',");
+        expect(locale1Content).toContain("numberedList: 'numbered-list',");
+        expect(locale1Content).toContain("decreaseIndent: 'decrease-indent',");
+        expect(locale1Content).toContain("increaseIndent: 'increase-indent',");
 
-        expect(locale2Content).toContain('readonly firstName: string; // John');
-        expect(locale2Content).toContain('readonly lastName: string; // Doe');
-        expect(locale2Content).toContain('readonly street: string; // Main Street');
-        expect(locale2Content).toContain('readonly number: string; // 123');
-        expect(locale2Content).toContain('readonly city: string; // Anytown');
-        expect(locale2Content).toContain('readonly name: string; // First Level');
-        expect(locale2Content).toContain('readonly name: string; // Second Level');
-        expect(locale2Content).toContain('readonly name: string; // Third Level');
-        expect(locale2Content).toContain('readonly firstName: string; // Jane');
-        expect(locale2Content).toContain('readonly lastName: string; // Doe');
-        expect(locale2Content).toContain('readonly relation: string; // Partner');
-        expect(locale2Content).toContain('readonly firstName: string; // Nicolas');
-        expect(locale2Content).toContain('readonly lastName: string; // Doe');
-        expect(locale2Content).toContain('readonly relation: string; // Father');
+        expect(locale2Content).toContain("firstName: 'first-name',");
+        expect(locale2Content).toContain("lastName: 'last-name',");
+        expect(locale2Content).toContain("street: 'address.street',");
+        expect(locale2Content).toContain("number: 'address.number',");
+        expect(locale2Content).toContain("city: 'address.city',");
+        expect(locale2Content).toContain("name: 'first-level.name',");
+        expect(locale2Content).toContain("name: 'first-level.second-level.name',");
+        expect(locale2Content).toContain("name: 'first-level.second-level.third-level.name',");
+        expect(locale2Content).toContain("firstName: 'relationships.family[0].first-name',");
+        expect(locale2Content).toContain("lastName: 'relationships.family[0].last-name',");
+        expect(locale2Content).toContain("relation: 'relationships.family[0].relation',");
+        expect(locale2Content).toContain("firstName: 'relationships.family[1].first-name',");
+        expect(locale2Content).toContain("lastName: 'relationships.family[1].last-name',");
+        expect(locale2Content).toContain("relation: 'relationships.family[1].relation',");
 
-        expect(locale3Content).toContain('readonly camelCaseKey1: string; // Lorem Ipsum');
-        expect(locale3Content).toContain('readonly camelCaseKey2: string; // {0} Lorem Ipsum');
-        expect(locale3Content).toContain('readonly camelCaseKey3: string; // {0} Lorem Ipsum {1}');
-        expect(locale3Content).toContain("readonly '{0}': string; // Prefix");
-        expect(locale3Content).toContain("readonly '{1}': string; // Postfix");
-        expect(locale3Content).toContain('readonly title: string; // Catalog of links');
-        expect(locale3Content).toContain("readonly '-special-key-1': string; // Special Key 1");
-        expect(locale3Content).toContain("readonly '0special-key-2': string; // Special Key 2");
-        expect(locale3Content).toContain("readonly '$special-key-3': string; // Special Key 3");
-        expect(locale3Content).toContain("readonly '#special-key-4': string; // Special Key 4");
-        expect(locale3Content).toContain("readonly '&special-key-5': string; // Special Key 5");
-        expect(locale3Content).toContain('readonly title: string; // Swagger UI');
-        expect(locale3Content).toContain(
-            'readonly desc: string; // Simplify API development for users, teams, and enterprises with the Swagger open source and professional toolset. Find out how Swagger can help you.'
-        );
-        expect(locale3Content).toContain('readonly link: string; // https://swagger.io/tools/swagger-ui/');
-        expect(locale3Content).toContain('readonly title: string; // GitHub profile');
-        expect(locale3Content).toContain('readonly desc: string; // Freelance Developer from Amsterdam');
-        expect(locale3Content).toContain('readonly link: string; // https://github.com/ferdikoomen');
+        expect(locale3Content).toContain("camelCaseKey1: 'group1.camelCaseKey1',");
+        expect(locale3Content).toContain("camelCaseKey2: 'group1.camelCaseKey2',");
+        expect(locale3Content).toContain("camelCaseKey3: 'group1.camelCaseKey3',");
+        expect(locale3Content).toContain("'{0}': 'group1.{0}',");
+        expect(locale3Content).toContain("'{1}': 'group1.{1}',");
+        expect(locale3Content).toContain("title: 'group2.title',");
+        expect(locale3Content).toContain("'-special-key-1': 'group2.-special-key-1',");
+        expect(locale3Content).toContain("'0special-key-2': 'group2.0special-key-2',");
+        expect(locale3Content).toContain("'$special-key-3': 'group2.$special-key-3',");
+        expect(locale3Content).toContain("'#special-key-4': 'group2.#special-key-4',");
+        expect(locale3Content).toContain("'&special-key-5': 'group2.&special-key-5',");
+        expect(locale3Content).toContain("title: 'group2.data.0.title',");
+        expect(locale3Content).toContain("desc: 'group2.data.0.desc',");
+        expect(locale3Content).toContain("link: 'group2.data.0.link',");
+        expect(locale3Content).toContain("title: 'group2.data.1.title',");
+        expect(locale3Content).toContain("desc: 'group2.data.1.desc',");
+        expect(locale3Content).toContain("link: 'group2.data.1.link',");
 
-        expect(settingsContent).toContain('readonly server: string; // https://github.com');
-        expect(settingsContent).toContain('readonly username: string; // John Doe');
-        expect(settingsContent).toContain('readonly debug: boolean; // false');
-        expect(settingsContent).toContain('readonly fontColor: string; // #FF0000');
-        expect(settingsContent).toContain('readonly fontSize: number; // 10');
-        expect(settingsContent).toContain('readonly styleHeader: string; // { font-family: monospace; font-size: 20px; }');
-        expect(settingsContent).toContain('readonly styleBody: string; // { font-family: monospace; font-size: 12px; }');
-
-        expect(bundleContent).toContain('"alignLeft":"align-left"');
-        expect(bundleContent).toContain('"alignCenter":"align-center"');
-        expect(bundleContent).toContain('"alignRight":"align-right"');
-        expect(bundleContent).toContain('"justify":"justify"');
-        expect(bundleContent).toContain('"bulletList":"bullet-list"');
-        expect(bundleContent).toContain('"numberedList":"numbered-list"');
-        expect(bundleContent).toContain('"decreaseIndent":"decrease-indent"');
-        expect(bundleContent).toContain('"increaseIndent":"increase-indent"');
+        expect(settingsContent).toContain("server: 'https://github.com',");
+        expect(settingsContent).toContain("username: 'John Doe',");
+        expect(settingsContent).toContain("debug: 'false',");
+        expect(settingsContent).toContain("fontColor: '#FF0000',");
+        expect(settingsContent).toContain("fontSize: '10',");
+        expect(settingsContent).toContain("styleHeader: '{ font-family: monospace; font-size: 20px; }',");
+        expect(settingsContent).toContain("styleBody: '{ font-family: monospace; font-size: 12px; }',");
 
         expect(bundleContent).toContain('"firstName":"first-name"');
         expect(bundleContent).toContain('"lastName":"last-name"');

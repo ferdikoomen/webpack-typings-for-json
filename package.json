@@ -1,6 +1,6 @@
 {
     "name": "webpack-typings-for-json",
-    "version": "0.2.4",
+    "version": "0.3.0",
     "description": "Webpack loader that generates TypeScript typings for JSON files",
     "author": "Ferdi Koomen",
     "homepage": "https://github.com/ferdikoomen/webpack-typings-for-json",
@@ -30,6 +30,10 @@
     "module": "src/index.js",
     "files": [
         "src/index.js",
+        "src/utils.js",
+        "src/template.hbs",
+        "src/template-entry.hbs",
+        "src/template-value.hbs",
         "typings/json.d.ts"
     ],
     "scripts": {
@@ -46,7 +50,9 @@
     },
     "dependencies": {
         "camelcase": "5.3.1",
-        "loader-utils": "1.4.0"
+        "handlebars": "4.7.3",
+        "loader-utils": "1.4.0",
+        "path": "0.12.7"
     },
     "devDependencies": {
         "@types/node": "13.7.4",

@@ -17,11 +17,11 @@
  */
 declare module '*.json' {
 
-    interface Keys {
-        readonly [key: string]: any;
-    }
+    declare const keys: {
+        readonly [key: string]: string;
+    };
 
-    declare const keys: Keys;
+    export type LocaleKey = string;
 
     export default keys;
 }
