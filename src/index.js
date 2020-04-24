@@ -9,7 +9,7 @@ const template = utils.readTemplate('template.hbs');
 const templateEntry = utils.readTemplate('template-entry.hbs');
 
 handlebars.registerPartial('entry', templateEntry);
-handlebars.registerHelper('object', function(context, options) {
+handlebars.registerHelper('object', function (context, options) {
     return typeof context === 'object' ? options.fn(this) : options.inverse(this);
 });
 
@@ -21,7 +21,7 @@ handlebars.registerHelper('object', function(context, options) {
  *
  * @param source The content of the loaded JSON file.
  */
-module.exports = function(source) {
+module.exports = function (source) {
     if (this.cacheable) {
         this.cacheable();
     }

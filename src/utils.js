@@ -57,7 +57,7 @@ function getExports(obj, exportValues, parentKey) {
 
 function getExportTypes(obj) {
     const result = [];
-    Object.values(obj).forEach(value => {
+    Object.values(obj).forEach((value) => {
         if (Array.isArray(value)) {
             for (let i = 0; i < value.length; i++) {
                 result.push(...getExportTypes(value[i]));
