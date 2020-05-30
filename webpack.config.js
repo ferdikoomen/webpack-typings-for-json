@@ -37,7 +37,7 @@ module.exports = {
                 test: /(locale1|locale2|locale3)\.json$/,
                 type: 'javascript/auto',
                 use: [{
-                    loader: path.resolve(__dirname, './src'),
+                    loader: path.resolve(__dirname, './dist'),
                     options: {
                         exportType: true
                     }
@@ -46,7 +46,7 @@ module.exports = {
                 test: /(settings)\.json$/,
                 type: 'javascript/auto',
                 use: [{
-                    loader: path.resolve(__dirname, './src'),
+                    loader: path.resolve(__dirname, './dist'),
                     options: {
                         exportValues: true
                     }

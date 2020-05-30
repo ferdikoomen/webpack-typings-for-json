@@ -1,9 +1,6 @@
 'use strict';
 
-const fs = require('fs');
-const path = require('path');
-const camelCase = require('camelcase');
-const handlebars = require('handlebars');
+import camelCase from 'camelcase';
 
 /**
  * Convert prop name to "camelCase" and support special cases
@@ -34,7 +31,7 @@ function toPropName(key) {
  *    ...
  * }
  */
-function getExports(obj, exportValues, parentKey) {
+export function getExports(obj, exportValues, parentKey) {
     const result = {};
     Object.entries(obj).forEach(([key, value]) => {
         const prop = toPropName(key);
@@ -55,7 +52,7 @@ function getExports(obj, exportValues, parentKey) {
     return result;
 }
 
-function getExportTypes(obj) {
+export function getExportTypes(obj) {
     const result = [];
     Object.values(obj).forEach(value => {
         if (Array.isArray(value)) {
@@ -74,33 +71,9 @@ function getExportTypes(obj) {
 }
 
 /**
- * Read and compile the handlebar template
- * @param name Name of the template
- */
-function readTemplate(name) {
-    const templatePath = path.resolve(__dirname, name);
-    const templateContent = fs.readFileSync(templatePath, 'utf8').toString();
-    return handlebars.compile(templateContent, {
-        strict: true,
-        noEscape: true,
-        knownHelpersOnly: true,
-        knownHelpers: {
-            object: true,
-        },
-    });
-}
-
-/**
  * Get the modified source (output of this loader)
  * @param exports Modified new exports
  */
-function getSource(exports) {
+export function getSource(exports) {
     return `module.exports = ${JSON.stringify(exports)};`;
 }
-
-module.exports = {
-    readTemplate,
-    getExports,
-    getExportTypes,
-    getSource,
-};

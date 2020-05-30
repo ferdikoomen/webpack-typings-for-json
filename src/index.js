@@ -1,15 +1,16 @@
 'use strict';
 
-const fs = require('fs');
-const handlebars = require('handlebars');
-const { getOptions } = require('loader-utils');
-const utils = require('./utils');
+import * as fs from 'fs';
+import { getOptions } from 'loader-utils';
+import { getExports, getExportTypes, getSource } from './utils';
+import Handlebars from 'handlebars/runtime';
+import $export from './templates/export.hbs';
+import $exportEntry from './templates/export-entry.hbs';
 
-const template = utils.readTemplate('template.hbs');
-const templateEntry = utils.readTemplate('template-entry.hbs');
-
-handlebars.registerPartial('entry', templateEntry);
-handlebars.registerHelper('object', function (context, options) {
+const template = Handlebars.template($export);
+const templateEntry = Handlebars.template($exportEntry);
+Handlebars.registerPartial('entry', templateEntry);
+Handlebars.registerHelper('object', function (context, options) {
     return typeof context === 'object' ? options.fn(this) : options.inverse(this);
 });
 
@@ -30,8 +31,8 @@ module.exports = function (source) {
     const locals = JSON.parse(source);
     const exportValues = options && options.exportValues === true;
     const exportType = options && options.exportType === true;
-    const exports = utils.getExports(locals, exportValues);
-    const exportTypes = utils.getExportTypes(exports);
+    const exports = getExports(locals, exportValues);
+    const exportTypes = getExportTypes(exports);
 
     // Get the path for the definition file, this is relative to the currently loaded json file... easy!
     const definitionFile = this.resourcePath.replace(/\.json$/g, '.json.d.ts');
@@ -63,5 +64,5 @@ module.exports = function (source) {
     // that contains 'key:key' objects instead of 'key:value'. We already created this object
     // in the step above! So, we can just stringify that and we are in business.
 
-    return utils.getSource(exports);
+    return getSource(exports);
 };
