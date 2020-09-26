@@ -31,7 +31,7 @@ function handlebarsPlugin() {
                     noEscape: true,
                     knownHelpersOnly: true,
                     knownHelpers: {
-                        object: true
+                        object: true,
                     },
                 });
                 return `export default ${templateSpec};`;
@@ -41,7 +41,7 @@ function handlebarsPlugin() {
     };
 }
 
-export default {
+module.exports = {
     input: './src/index.js',
     output: {
         file: './dist/index.js',

@@ -13,17 +13,17 @@ module.exports = {
 
     output: {
         path: path.resolve(__dirname, './test/dist'),
-        filename: 'bundle.js'
+        filename: 'bundle.js',
     },
 
     resolve: {
-        extensions: ['.ts', '.js', '.json']
+        extensions: ['.ts', '.js', '.json'],
     },
 
     devServer: {
         contentBase: path.resolve(__dirname, './test/dist'),
         open: true,
-        port: 8080
+        port: 8080,
     },
 
     module: {
@@ -31,34 +31,34 @@ module.exports = {
             {
                 test: /\.ts$/,
                 use: [{
-                    loader: 'ts-loader'
-                }]
+                    loader: 'ts-loader',
+                }],
             }, {
                 test: /(locale1|locale2|locale3)\.json$/,
                 type: 'javascript/auto',
                 use: [{
                     loader: path.resolve(__dirname, './dist'),
                     options: {
-                        exportType: true
-                    }
-                }]
+                        exportType: true,
+                    },
+                }],
             }, {
                 test: /(settings)\.json$/,
                 type: 'javascript/auto',
                 use: [{
                     loader: path.resolve(__dirname, './dist'),
                     options: {
-                        exportValues: true
-                    }
-                }]
-            }
+                        exportValues: true,
+                    },
+                }],
+            },
         ]
     },
 
     plugins: [
         new HtmlWebpackPlugin({
             template: './test/index.html',
-            filename: './index.html'
-        })
-    ]
+            filename: './index.html',
+        }),
+    ],
 };

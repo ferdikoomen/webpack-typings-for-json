@@ -4,7 +4,7 @@ import locale3 from './locale3.json';
 import settings from './settings.json';
 
 function testLocaleKey(localKey: LocaleKey): void {
-    console.log('localKey:', localKey)
+    console.log('localKey:', localKey);
 }
 
 console.log(locale1.alignLeft);
