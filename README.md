@@ -237,8 +237,8 @@ declare module '*.json' {
 
 [npm-url]: https://npmjs.org/package/webpack-typings-for-json
 [npm-image]: https://img.shields.io/npm/v/webpack-typings-for-json.svg
-[license-image]: http://img.shields.io/npm/l/webpack-typings-for-json.svg
 [license-url]: LICENSE
+[license-image]: http://img.shields.io/npm/l/webpack-typings-for-json.svg
 [travis-url]: https://travis-ci.org/ferdikoomen/webpack-typings-for-json
 [travis-image]: https://img.shields.io/travis/ferdikoomen/webpack-typings-for-json.svg
 [deps-url]: https://david-dm.org/ferdikoomen/webpack-typings-for-json
@@ -249,5 +249,5 @@ declare module '*.json' {
 [quality-image]: https://img.shields.io/lgtm/grade/javascript/g/ferdikoomen/webpack-typings-for-json.svg
 [climate-url]: https://codeclimate.com/github/ferdikoomen/webpack-typings-for-json
 [climate-image]: https://img.shields.io/codeclimate/maintainability/ferdikoomen/webpack-typings-for-json.svg
+[downloads-url]: http://npm-stat.com/charts.html?package=webpack-typings-for-json
 [downloads-image]: http://img.shields.io/npm/dm/webpack-typings-for-json.svg
-[downloads-url]: http://npm-stat.com/charts.html?package=webpack-typings-for-json.svg
