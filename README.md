@@ -1,10 +1,13 @@
 # Webpack typings for JSON loader
 
-[![NPM](https://badgen.net/npm/v/webpack-typings-for-json)](https://www.npmjs.com/package/webpack-typings-for-json)
-[![License](https://badgen.net/npm/license/webpack-typings-for-json)](https://www.npmjs.com/package/webpack-typings-for-json)
-[![Build Status](https://badgen.net/travis/ferdikoomen/webpack-typings-for-json/master)](https://travis-ci.org/ferdikoomen/webpack-typings-for-json)
-[![Codecov](https://codecov.io/gh/ferdikoomen/webpack-typings-for-json/branch/master/graph/badge.svg)](https://codecov.io/gh/ferdikoomen/webpack-typings-for-json)
-[![Quality](https://badgen.net/lgtm/grade/javascript/g/ferdikoomen/webpack-typings-for-json)](https://lgtm.com/projects/g/ferdikoomen/webpack-typings-for-json)
+[![NPM][npm-image]][npm-url]
+[![License][license-image]][license-url]
+[![Build Status][travis-image]][travis-url]
+[![Dependency Status][deps-image]][deps-url]
+[![Coverage][coverage-image]][coverage-url]
+[![Quality][quality-image]][quality-url]
+[![Code Climate][climate-image]][climate-url]
+[![Downloads][downloads-image]][downloads-url]
 
 > Webpack loader that generates TypeScript typings for JSON files
 
@@ -231,3 +234,20 @@ declare module '*.json' {
     ...
 }
 ```
+
+[npm-url]: https://npmjs.org/package/webpack-typings-for-json
+[npm-image]: https://img.shields.io/npm/v/webpack-typings-for-json.svg
+[license-image]: http://img.shields.io/npm/l/webpack-typings-for-json.svg
+[license-url]: LICENSE
+[travis-url]: https://travis-ci.org/ferdikoomen/webpack-typings-for-json
+[travis-image]: https://img.shields.io/travis/ferdikoomen/webpack-typings-for-json.svg
+[deps-url]: https://david-dm.org/ferdikoomen/webpack-typings-for-json
+[deps-image]: https://img.shields.io/david/ferdikoomen/webpack-typings-for-json.svg
+[coverage-url]: https://codecov.io/gh/ferdikoomen/webpack-typings-for-json
+[coverage-image]: https://img.shields.io/codecov/c/github/ferdikoomen/webpack-typings-for-json.svg
+[quality-url]: https://lgtm.com/projects/g/ferdikoomen/webpack-typings-for-json
+[quality-image]: https://img.shields.io/lgtm/grade/javascript/g/ferdikoomen/webpack-typings-for-json.svg
+[climate-url]: https://codeclimate.com/github/ferdikoomen/webpack-typings-for-json
+[climate-image]: https://img.shields.io/codeclimate/maintainability/ferdikoomen/webpack-typings-for-json.svg
+[downloads-image]: http://img.shields.io/npm/dm/webpack-typings-for-json.svg
+[downloads-url]: http://npm-stat.com/charts.html?package=webpack-typings-for-json.svg
