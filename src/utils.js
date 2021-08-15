@@ -10,9 +10,9 @@ import camelCase from 'camelcase';
  */
 function toPropName(key) {
     if (/^[a-z][a-z0-9\-_]+/gi.test(key)) {
-        return camelCase(key, { loale: 'en-US' });
+        return camelCase(key, { locale: 'en-US' });
     }
-    return `'${key}'`;
+    return key;
 }
 
 /**
@@ -75,5 +75,5 @@ export function getExportTypes(obj) {
  * @param exports Modified new exports
  */
 export function getSource(exports) {
-    return `module.exports = ${JSON.stringify(exports)};`;
+    return `module.exports = ${JSON.stringify(exports, null, 3)};`;
 }

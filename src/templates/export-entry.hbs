@@ -1,9 +1,9 @@
 {{#object this}}
-{{@key}}: {
+'{{@key}}': {
 {{#each this}}
     {{> entry}}
 {{/each}}
 },
 {{else}}
-{{@key}}: '{{this}}',
+'{{@key}}': '{{this}}',
 {{/object}}

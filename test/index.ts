@@ -31,6 +31,8 @@ console.log(locale2.relationships.family[1].relation);
 console.log(locale3.group1.camelCaseKey1);
 console.log(locale3.group1.camelCaseKey2);
 console.log(locale3.group1.camelCaseKey3);
+console.log(Object.keys(locale3.group1));
+console.log(Object.keys(locale3.group2));
 console.log(locale3.group1['{0}']);
 console.log(locale3.group1['{1}']);
 console.log(locale3.group2['-special-key-1']);
