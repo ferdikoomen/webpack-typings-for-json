@@ -2,8 +2,6 @@
 
 [![NPM][npm-image]][npm-url]
 [![License][license-image]][license-url]
-[![Build Status][travis-image]][travis-url]
-[![Dependency Status][deps-image]][deps-url]
 [![Coverage][coverage-image]][coverage-url]
 [![Quality][quality-image]][quality-url]
 [![Code Climate][climate-image]][climate-url]
@@ -239,10 +237,6 @@ declare module '*.json' {
 [npm-image]: https://img.shields.io/npm/v/webpack-typings-for-json.svg
 [license-url]: LICENSE
 [license-image]: http://img.shields.io/npm/l/webpack-typings-for-json.svg
-[travis-url]: https://travis-ci.org/ferdikoomen/webpack-typings-for-json
-[travis-image]: https://img.shields.io/travis/ferdikoomen/webpack-typings-for-json.svg
-[deps-url]: https://david-dm.org/ferdikoomen/webpack-typings-for-json
-[deps-image]: https://img.shields.io/david/ferdikoomen/webpack-typings-for-json.svg
 [coverage-url]: https://codecov.io/gh/ferdikoomen/webpack-typings-for-json
 [coverage-image]: https://img.shields.io/codecov/c/github/ferdikoomen/webpack-typings-for-json.svg
 [quality-url]: https://lgtm.com/projects/g/ferdikoomen/webpack-typings-for-json
