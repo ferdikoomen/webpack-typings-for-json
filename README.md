@@ -6,6 +6,7 @@
 [![Quality][quality-image]][quality-url]
 [![Code Climate][climate-image]][climate-url]
 [![Downloads][downloads-image]][downloads-url]
+[![Build][build-image]][build-url]
 
 > Webpack loader that generates TypeScript typings for JSON files
 
@@ -245,3 +246,5 @@ declare module '*.json' {
 [climate-image]: https://img.shields.io/codeclimate/maintainability/ferdikoomen/webpack-typings-for-json.svg
 [downloads-url]: http://npm-stat.com/charts.html?package=webpack-typings-for-json
 [downloads-image]: http://img.shields.io/npm/dm/webpack-typings-for-json.svg
+[build-url]: https://circleci.com/gh/ferdikoomen/webpack-typings-for-json/tree/master
+[build-image]: https://circleci.com/gh/ferdikoomen/webpack-typings-for-json/tree/master.svg?style=svg
