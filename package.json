@@ -44,7 +44,7 @@
         "prettier": "prettier \"./src/**/*.js\" --check",
         "prettier:fix": "prettier \"./src/**/*.js\" --write",
         "codecov": "codecov --token=d5b9524e-41ce-4615-a9fc-0417eb781375",
-        "prepublish": "yarn clean && yarn build"
+        "prepublish": "yarn run clean && yarn run build"
     },
     "dependencies": {
         "camelcase": "^6.2.0",
@@ -57,7 +57,7 @@
         "@rollup/plugin-node-resolve": "13.0.5",
         "@types/node": "16.10.3",
         "codecov": "3.8.3",
-        "eslint": "7.32.0",
+        "eslint": "8.0.0",
         "eslint-config-prettier": "8.3.0",
         "eslint-plugin-prettier": "4.0.0",
         "file-loader": "6.2.0",
@@ -73,5 +73,9 @@
         "webpack": "5.58.1",
         "webpack-cli": "4.9.0",
         "webpack-dev-server": "4.3.1"
+    },
+    "engines": {
+        "node": ">= 16.0.0",
+        "npm": ">= 8.0.0"
     }
 }
