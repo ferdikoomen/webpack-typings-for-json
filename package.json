@@ -49,7 +49,7 @@
     "dependencies": {
         "camelcase": "^6.2.0",
         "handlebars": "^4.7.6",
-        "loader-utils": "^2.0.0",
+        "loader-utils": "^3.1.0",
         "path": "^0.12.7"
     },
     "devDependencies": {
@@ -66,12 +66,12 @@
         "jest-cli": "27.2.5",
         "prettier": "2.4.1",
         "rimraf": "3.0.2",
-        "rollup": "2.58.0",
+        "rollup": "2.59.0",
         "rollup-plugin-terser": "7.0.2",
         "ts-loader": "9.2.6",
         "typescript": "4.4.3",
         "webpack": "5.58.1",
         "webpack-cli": "4.9.0",
-        "webpack-dev-server": "4.3.1"
+        "webpack-dev-server": "4.4.0"
     }
 }
