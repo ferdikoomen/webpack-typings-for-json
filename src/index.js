@@ -1,7 +1,6 @@
 'use strict';
 
 import * as fs from 'fs';
-import { getOptions } from 'loader-utils';
 import { getExports, getExportTypes, getSource } from './utils';
 import Handlebars from 'handlebars/runtime';
 import $export from './templates/export.hbs';
@@ -27,7 +26,7 @@ module.exports = function (source) {
         this.cacheable();
     }
 
-    const options = getOptions(this);
+    const options = this.getOptions();
     const locals = JSON.parse(source);
     const exportValues = options && options.exportValues === true;
     const exportType = options && options.exportType === true;
