@@ -1,6 +1,4 @@
-'use strict';
-
-import * as fs from 'fs';
+import { writeFileSync } from 'fs';
 import { getExports, getExportTypes, getSource } from './utils';
 import Handlebars from 'handlebars/runtime';
 import $export from './templates/export.hbs';
@@ -44,7 +42,7 @@ module.exports = function (source) {
     // Write the definition file, we do not use Webpack's emitFile() method, since
     // that would then track this output file as a dependency. We don't want this,
     // since these files are placed inside the source folder!
-    fs.writeFileSync(definitionFile, definitionFileContent);
+    writeFileSync(definitionFile, definitionFileContent);
 
     // Here comes the Webpack magic: Lets say we have the following i18n code example:
     //
