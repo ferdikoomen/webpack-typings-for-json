@@ -1,21 +1,8 @@
-name: dependabot
-
-on: pull_request
-
 version: 2
-
 updates:
-  - package-ecosystem: "npm"
-    directory: "/"
-    schedule:
-      interval: "daily"
-
-jobs:
-  dependabot:
-    runs-on: ubuntu-latest
-    if: ${{ github.actor == 'dependabot[bot]' }}
-    steps:
-      - uses: actions/checkout@v2
-      - uses: ahmadnassri/action-dependabot-auto-merge@v2
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: monthly
+    time: "04:00"
+  open-pull-requests-limit: 10
