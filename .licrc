@@ -14,3 +14,4 @@ ignored = []
 
 [behavior]
 run_only_on_dependency_modification = false
+do_not_block_pr = true
