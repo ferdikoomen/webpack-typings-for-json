@@ -63,7 +63,7 @@ declare const locale = {
     bulletList: 'bullet-list',
     numberedList: 'numbered-list',
     decreaseIndent: 'decrease-indent',
-    increaseIndent: 'increase-indent',
+    increaseIndent: 'increase-indent'
 } as const;
 
 export type LocaleKey = string;
@@ -166,9 +166,9 @@ const locale = {
         color: '#FF0000',
         fonts: {
             header: '{ font-family: monospace; font-size: 20px; }',
-            body: '{ font-family: monospace; font-size: 12px; }',
-        },
-    },
+            body: '{ font-family: monospace; font-size: 12px; }'
+        }
+    }
 } as const;
 
 export type LocaleKey = string;
