@@ -1,0 +1,13 @@
+[licenses]
+accepted = [
+  "MIT",
+  "BSD",
+  "ISC",
+  "Apache 2.0"
+]
+
+[dependencies]
+ignored = []
+
+[behavior]
+run_only_on_dependency_modification = true
