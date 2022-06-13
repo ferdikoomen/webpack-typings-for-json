@@ -8,6 +8,3 @@ accepted = [
 
 [dependencies]
 ignored = []
-
-[behavior]
-run_only_on_dependency_modification = true
