@@ -1,10 +1,5 @@
 [licenses]
-accepted = [
-  "MIT",
-  "BSD",
-  "ISC",
-  "Apache 2.0"
-]
+accepted = ["MIT", "0BSD", "BSD-2-Clause", "BSD-3-Clause", "Apache 2.0", "ISC"]
 
 [dependencies]
 ignored = []
