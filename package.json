@@ -60,7 +60,7 @@
         "file-loader": "6.2.0",
         "html-webpack-plugin": "5.5.0",
         "jest": "28.1.2",
-        "jest-cli": "28.1.1",
+        "jest-cli": "28.1.2",
         "prettier": "2.7.1",
         "rimraf": "3.0.2",
         "rollup": "2.75.7",
