@@ -52,7 +52,7 @@
     "devDependencies": {
         "@rollup/plugin-commonjs": "22.0.2",
         "@rollup/plugin-node-resolve": "13.3.0",
-        "@types/node": "18.7.1",
+        "@types/node": "18.7.2",
         "codecov": "3.8.3",
         "eslint": "8.21.0",
         "eslint-config-prettier": "8.5.0",
