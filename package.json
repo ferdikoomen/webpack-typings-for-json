@@ -67,7 +67,7 @@
         "rollup-plugin-node-externals": "5.1.2",
         "rollup-plugin-terser": "7.0.2",
         "ts-loader": "9.4.2",
-        "typescript": "4.9.5",
+        "typescript": "5.0.2",
         "webpack": "5.76.3",
         "webpack-cli": "4.10.0",
         "webpack-dev-server": "4.13.1"
